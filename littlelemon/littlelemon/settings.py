@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'restaurant',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -79,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'LittleLemon',
         'USER': 'root',
-        'PASSWORD': '13flAmEchAsEr@_@',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {
@@ -130,3 +134,13 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+}
+
+# set djoser variable
+DJOSER={"USER_ID_FIELD":"username"}
